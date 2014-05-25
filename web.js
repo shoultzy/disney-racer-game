@@ -17,7 +17,7 @@ io.sockets.on('connection', function(socket) {
 	console.log('onConnection');
 });
 
-mongoClient.connect('mongodb://heroku_app25601055:9q4lt9502mvcp0ebuu3run97ae@ds053218.mongolab.com:53218/heroku_app25601055/user_worldData', function(err, db) {
+mongoClient.connect('mongodb://heroku_app25645729:etreg0vkol4cqsqr434qdp3c9t@ds033469.mongolab.com:33469/heroku_app25645729/user_worldData', function(err, db) {
 	initCollection(db);
 });
 
