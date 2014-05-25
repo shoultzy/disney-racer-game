@@ -1,0 +1,22 @@
+{
+  "name": "midkent-realtime-webapp",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ahmednuaman/midkent-realtime-webapp",
+  "authors": [
+    "Ahmed Nuaman <ahmed@ahmednuaman.com>"
+  ],
+  "description": "A real time web app for Mid Kent college students",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.16",
+    "socket.io-client": "~0.9.16"
+  }
+}
