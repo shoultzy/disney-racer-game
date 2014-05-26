@@ -1,5 +1,5 @@
-//var socket = io.connect('http://localhost:5000/');
-var socket = io.connect('http://limitless-thicket-5434.herokuapp.com/');
+var socket = io.connect('http://localhost:5000/');
+//var socket = io.connect('http://disney-racer-game.herokuapp.com/');
 
 var btn = document.getElementById("btn");
 btn.addEventListener("mousedown", onUserInput);
@@ -20,27 +20,27 @@ function onUserInput(event){
 	switch(event.type){
 		
 		case 'touchstart':
-			socket.emit('update_world_data', { userUID: '0000', userAction: 1 });
+			socket.emit('update_world_data', { userUID: '0000', userAcceleration: 1 });
 		break;
 		
 		case 'touchend':
-			socket.emit('update_world_data', { userUID: '0000', userAction: 0 });
+			socket.emit('update_world_data', { userUID: '0000', userAcceleration: 0 });
 		break;
 		
 		case 'touchleave':
-			socket.emit('update_world_data', { userUID: '0000', userAction: 0 });
+			socket.emit('update_world_data', { userUID: '0000', userAcceleration: 0 });
 		break;
 		
 		case 'mousedown':
-			socket.emit('update_world_data', { userUID: '0000', userAction: 1 });
+			socket.emit('update_world_data', { userUID: '0000', userAcceleration: 1 });
 		break;
 		
 		case 'mouseup':
-			socket.emit('update_world_data', { userUID: '0000', userAction: 0 });
+			socket.emit('update_world_data', { userUID: '0000', userAcceleration: 0 });
 		break;
 		
 		case 'mouseout':
-			socket.emit('update_world_data', { userUID: '0000', userAction: 0 });
+			socket.emit('update_world_data', { userUID: '0000', userAcceleration: 0 });
 		break;
 	}
 	

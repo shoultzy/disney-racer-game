@@ -45,9 +45,8 @@ function initCollection(db) {
 function initSockets(collection) {
 	
 	io.sockets.on('connection', function(socket) {
-		
-		
-		//collection.insert({userUID : '0000', userAction : 'mouseUp'}, function(err) {
+			
+		//collection.insert({userUID : '0000', userAcceleration : 0}, function(err) {
 			//console.log('Wrote', data);
 		//});
 		
@@ -55,7 +54,7 @@ function initSockets(collection) {
 			
 			collection.update(
 				{ userUID : data.userUID },
-				{ userUID : data.userUID, userAction: data.userAction },
+				{ userUID : data.userUID, userAcceleration: data.userAcceleration },
 				{ upsert : true },
 				function(err){
 					console.log('Wrote', data);
