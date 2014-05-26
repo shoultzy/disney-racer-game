@@ -1,48 +1,54 @@
 var socket = io.connect('http://localhost:5000/');
 //var socket = io.connect('http://disney-racer-game.herokuapp.com/');
 
-var btn = document.getElementById("btn");
-btn.addEventListener("mousedown", onUserInput);
-btn.addEventListener("mouseup", onUserInput);
-btn.addEventListener("mouseout", onUserInput);
+var userID = '0001';
 
-btn.addEventListener('touchstart', onUserInput);
-btn.addEventListener('touchend', onUserInput);
-btn.addEventListener('touchleave', onUserInput);
+var btnAccelerate = document.getElementById("btnAccelerate");
+btnAccelerate.addEventListener("mousedown", onUserInput);
+btnAccelerate.addEventListener("mouseup", onUserInput);
+btnAccelerate.addEventListener("mouseout", onUserInput);
+btnAccelerate.addEventListener('touchstart', onUserInput);
+btnAccelerate.addEventListener('touchend', onUserInput);
+btnAccelerate.addEventListener('touchleave', onUserInput);
+btnAccelerate.name = 'btnAccelerate';
 
 
-//var pressNum = 0;
+var btnReverse = document.getElementById("btnReverse");
+btnReverse.addEventListener("mousedown", onUserInput);
+btnReverse.addEventListener("mouseup", onUserInput);
+btnReverse.addEventListener("mouseout", onUserInput);
+btnReverse.addEventListener('touchstart', onUserInput);
+btnReverse.addEventListener('touchend', onUserInput);
+btnReverse.addEventListener('touchleave', onUserInput);
+btnReverse.name = 'btnReverse';
+
 
 function onUserInput(event){
-	
-	console.log(event.type);
-	
+		
 	switch(event.type){
 		
 		case 'touchstart':
-			socket.emit('update_world_data', { userUID: '0000', userAcceleration: 1 });
-		break;
-		
-		case 'touchend':
-			socket.emit('update_world_data', { userUID: '0000', userAcceleration: 0 });
-		break;
-		
-		case 'touchleave':
-			socket.emit('update_world_data', { userUID: '0000', userAcceleration: 0 });
-		break;
-		
 		case 'mousedown':
-			socket.emit('update_world_data', { userUID: '0000', userAcceleration: 1 });
+			event.currentTarget.name == 'btnAccelerate' ? socket.emit('update_world_data', { userUID: userID, userAcceleration: 1 }) : socket.emit('update_world_data', { userUID: userID, userAcceleration: -1 });
 		break;
-		
+
+		case 'touchleave':
 		case 'mouseup':
-			socket.emit('update_world_data', { userUID: '0000', userAcceleration: 0 });
-		break;
-		
 		case 'mouseout':
-			socket.emit('update_world_data', { userUID: '0000', userAcceleration: 0 });
+			socket.emit('update_world_data', { userUID: userID, userAcceleration: 0 });
 		break;
+	}	
+};
+
+if (window.DeviceMotionEvent != undefined) {
+	window.ondevicemotion = function(event) {  
+	    var accelerationX = event.accelerationIncludingGravity.x;  
+	    var accelerationY = event.accelerationIncludingGravity.y;  
+	    var accelerationZ = event.accelerationIncludingGravity.z;  
+	    
+	   /* console.log('accelerationX:  ', accelerationX);
+	    console.log('accelerationY:  ', accelerationY);
+	    console.log('accelerationZ:  ', accelerationZ);*/
 	}
-	
-	//pressNum++;
-}
+};
+
